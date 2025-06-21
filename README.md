@@ -34,12 +34,12 @@ A classic Sudoku puzzle game with an integrated AI agent that can provide hints 
 To run this project, follow these steps:<br>
 1] Clone the repository:<br>
 git clone https://github.com/Ayush2029/Sudoku-Game.git <br>
-cd sudoku-game <br>
+cd Sudoku-Game <br>
 2] Install Requirements: <br>
 You can install it using pip: <br>
 pip install -r requirements.txt <br>
 3] Run the game: <br>
-python sudoku_game.py <br>
+python Sudoku_Game.py <br>
 
 <h3>AI Hint System </h3>
 The AI hint system employs a backtracking algorithm similar to the full solver. When a hint is requested: <br>
