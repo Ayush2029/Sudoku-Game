@@ -33,7 +33,7 @@ A classic Sudoku puzzle game with an integrated AI agent that can provide hints 
 <h3>How to Run </h3>
 To run this project, follow these steps:<br>
 1] Clone the repository:<br>
-git clone https://github.com/your-username/sudoku-game.git <br>
+git clone https://github.com/Ayush2029/Sudoku-Game.git <br>
 cd sudoku-game <br>
 2] Install Requirements: <br>
 You can install it using pip: <br>
