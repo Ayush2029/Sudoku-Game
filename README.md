@@ -39,7 +39,7 @@ cd Sudoku-Game <br>
 You can install it using pip: <br>
 pip install -r requirements.txt <br>
 3] Run the game: <br>
-python Sudoku_Game.py <br>
+python Sudoku.py <br>
 
 <h3>AI Hint System </h3>
 The AI hint system employs a backtracking algorithm similar to the full solver. When a hint is requested: <br>
