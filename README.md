@@ -37,7 +37,7 @@ git clone https://github.com/Ayush2029/Sudoku-Game.git <br>
 cd Sudoku-Game <br>
 2] Install Requirements: <br>
 You can install it using pip: <br>
-pip install -r requirements.txt <br>
+pip install -r requirement.txt <br>
 3] Run the game: <br>
 python Sudoku.py <br>
 
