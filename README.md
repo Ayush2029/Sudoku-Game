@@ -6,7 +6,7 @@ A classic Sudoku puzzle game built with Python and Pygame, playable both as a de
 
 ## Live Demo
 
-[Play in Browser](https://sudoku-game.pages.dev)
+[Play in Browser](https://sudoku-c90.pages.dev/)
 
 ---
 
