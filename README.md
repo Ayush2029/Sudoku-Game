@@ -41,8 +41,7 @@ A classic Sudoku puzzle game built with Python and Pygame, playable both as a de
 ## Project Structure
 ```
 Sudoku-Game/
-├── sudoku/
-│   └── main.py
+├── main.py
 ├── requirements.txt
 └── README.md
 ```
@@ -94,8 +93,6 @@ This generates a `sudoku/build/web/` folder. Open `http://localhost:8000` to tes
 
 ## Deploying to Cloudflare Pages
 
-**Option A — Via GitHub (CI/CD)**
-
 1. Push your repo to GitHub
 2. Go to [Cloudflare Pages](https://pages.cloudflare.com) → Create a project → Connect to Git
 3. Select your repository
@@ -104,19 +101,12 @@ This generates a `sudoku/build/web/` folder. Open `http://localhost:8000` to tes
 | Setting | Value |
 |---|---|
 | Framework preset | None |
-| Build command | `pip install -r requirements.txt && pygbag --build sudoku/` |
-| Build output directory | `sudoku/build/web` |
+| Build command | `pip install pygbag && pygbag --build main.py` |
+| Build output directory | `build/web` |
 
 5. Click **Save and Deploy**
 
 Every push to main will trigger an automatic redeploy.
-
-**Option B — Direct Upload (no CI)**
-
-1. Build locally with `pygbag sudoku/`
-2. Go to Cloudflare Pages → Create a project → **Direct Upload**
-3. Drag and drop the `sudoku/build/web/` folder
-4. Done — instant public URL
 
 ---
 
