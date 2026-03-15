@@ -1,50 +1,150 @@
-# Sudoku-Game
+# Sudoku Game
 
-A classic Sudoku puzzle game with an integrated AI agent that can provide hints or solve the entire puzzle for you. Developed using Python and Pygame, featuring a clean and intuitive graphical user interface.
+A classic Sudoku puzzle game built with Python and Pygame, playable both as a desktop app and in the browser via Pygbag. Deployed on Cloudflare Pages.
 
-<h3>Features</h3>
-- Interactive GUI: Play Sudoku with a visually appealing and responsive interface. <br>
-- AI Hint System: Get help when stuck with a hint that fills in a logically deduced number or reveals a random correct number.<br>
-- Full Solver: Let the AI solve the entire puzzle instantly.<br>
-- New Game Generation: Start a new randomly generated Sudoku puzzle.<br>
-- Input Validation: Real-time feedback for invalid moves.<br>
-- Clear Cells: Easily remove numbers you've entered.<br>
-- Visual Feedback: Highlighted selected cells and distinct coloring for original, user-entered, and hinted numbers.<br>
+---
 
-<h3>How to Play </h3>
-1] Select a Cell: Click on any empty (white background) cell to select it. The selected cell will be highlighted in blue. You cannot modify the original numbers (black text).<br>
-2] Enter Numbers: With a cell selected, type a number (1-9) using your keyboard.<br>
-- If your move is incorrect, an "Invalid move!" message will appear.<br>
-- If your move is valid, the number will appear in blue.<br>
-3] Clear a Cell: Press the Backspace or Delete key when a cell is selected to clear its content.<br>
-4] Get a Hint:<br>
-- Click the "Hint" button at the bottom of the window.<br>
-- Alternatively, press the H key on your keyboard.<br>
-- The AI will place a number in a random empty cell, highlighting it in a distinct orange color with a light blue background. This highlight persists until you interact with that cell.<br>
-5] Solve the Puzzle:<br>
-- Click the "Solve" button at the bottom of the window.<br>
-- Alternatively, press the S key on your keyboard.<br>
-- The AI will fill in the entire puzzle correctly.<br>
-6] Start a New Game:<br>
-- Click the "New Game" button at the bottom of the window.<br>
-- Alternatively, press the N key on your keyboard.<br>
-7] Quit: Close the game window.<br>
+## Live Demo
 
-<h3>How to Run </h3>
-To run this project, follow these steps:<br>
-1] Clone the repository:<br>
-git clone https://github.com/Ayush2029/Sudoku-Game.git <br>
-cd Sudoku-Game <br>
-2] Install Requirements: <br>
-You can install it using pip: <br>
-pip install -r requirement.txt <br>
-3] Run the game: <br>
-python Sudoku.py <br>
+[Play in Browser](https://sudoku-game.pages.dev)
 
-<h3>AI Hint System </h3>
-The AI hint system employs a backtracking algorithm similar to the full solver. When a hint is requested: <br>
-1] It first attempts to find an empty cell where only one number can logically be placed (a "Naked Single"). <br>
-2] If such a cell is found, that number is placed. <br>
-3] If no "Naked Single" is immediately apparent, the system falls back to providing the correct number for a randomly chosen empty cell from the pre-calculated solved board. <br>
+---
 
-This approach provides a helpful nudge without giving away too much, while the "Solve" feature offers a complete solution.
+## Features
+
+- Three difficulty modes — Easy, Medium, Hard
+- Difficulty selector always visible — switch anytime without restarting
+- Cell highlighting — selected cell highlights its row, column, and 3×3 box
+- Same number highlighting — all matching digits light up on selection
+- Hint system — reveals a correct value for a random empty cell
+- Solve button — auto-completes the puzzle from its original state
+- Unlimited erase — no penalty system, erase and retry freely
+- Invalid move detection — incorrect entries shown in red instantly
+- Completion message — shows hint count on puzzle completion
+- Keyboard support — full keyboard input alongside mouse
+
+---
+
+## Controls
+
+| Input | Action |
+|---|---|
+| Click a cell | Select it |
+| `1` – `9` | Enter number in selected cell |
+| `Backspace` / `Delete` | Erase selected cell |
+| `H` | Hint |
+| `S` | Solve |
+| `N` | New game |
+
+---
+
+## Project Structure
+```
+Sudoku-Game/
+├── sudoku/
+│   └── main.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Getting Started Locally
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/Ayush2029/Sudoku-Game.git
+cd Sudoku-Game
+```
+
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the game**
+```bash
+python sudoku/main.py
+```
+
+---
+
+## Dependencies
+
+| Package | Version | Purpose |
+|---|---|---|
+| pygame | 2.5.2 | Game rendering and input |
+| pygbag | 0.9.3 | Build tool for browser/WebAssembly export |
+
+`asyncio`, `random`, and `copy` are Python standard library modules — no installation needed.
+
+---
+
+## Building for Browser
+
+Pygbag compiles the Pygame app to WebAssembly so it runs in any browser.
+```bash
+pip install pygbag
+pygbag sudoku/
+```
+
+This generates a `sudoku/build/web/` folder. Open `http://localhost:8000` to test locally.
+
+---
+
+## Deploying to Cloudflare Pages
+
+**Option A — Via GitHub (CI/CD)**
+
+1. Push your repo to GitHub
+2. Go to [Cloudflare Pages](https://pages.cloudflare.com) → Create a project → Connect to Git
+3. Select your repository
+4. Set the following build settings:
+
+| Setting | Value |
+|---|---|
+| Framework preset | None |
+| Build command | `pip install -r requirements.txt && pygbag --build sudoku/` |
+| Build output directory | `sudoku/build/web` |
+
+5. Click **Save and Deploy**
+
+Every push to main will trigger an automatic redeploy.
+
+**Option B — Direct Upload (no CI)**
+
+1. Build locally with `pygbag sudoku/`
+2. Go to Cloudflare Pages → Create a project → **Direct Upload**
+3. Drag and drop the `sudoku/build/web/` folder
+4. Done — instant public URL
+
+---
+
+## How It Works
+
+**Puzzle generation** seeds three diagonal 3×3 boxes with random numbers, solves the full board using backtracking, then removes a set number of cells based on difficulty.
+
+| Difficulty | Cells removed |
+|---|---|
+| Easy | 36 |
+| Medium | 46 |
+| Hard | 56 |
+
+**Solver** uses recursive backtracking — tries digits 1–9 in each empty cell, backtracks on dead ends until the board is fully solved.
+
+**Browser compatibility** is achieved via `asyncio` — the game loop uses `await asyncio.sleep(0)` each frame to yield control back to the browser, preventing tab freezes.
+
+---
+
+## Tech Stack
+
+- **Python 3.x**
+- **Pygame 2.5.2** — rendering, input, fonts
+- **Pygbag 0.9.3** — WebAssembly build
+- **Cloudflare Pages** — hosting
+
+---
+
+## License
+
+MIT
