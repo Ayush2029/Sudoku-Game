@@ -22,6 +22,7 @@ A classic Sudoku puzzle game built with Python and Pygame, playable both as a de
 - Invalid move detection — incorrect entries shown in red instantly
 - Completion message — shows hint count on puzzle completion
 - Keyboard support — full keyboard input alongside mouse
+- Mobile keyboard support — numeric keyboard triggered on tap in browser
 
 ---
 
