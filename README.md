@@ -125,6 +125,7 @@ Every push to main will trigger an automatic redeploy.
 
 **Browser compatibility** is achieved via `asyncio` — the game loop uses `await asyncio.sleep(0)` each frame to yield control back to the browser, preventing tab freezes.
 
+**Mobile keyboard** is handled by injecting a hidden `<input inputmode="numeric">` element into the page when running under Emscripten. Every tap refocuses it to trigger the native numeric keyboard on Android and iOS. Input events are forwarded to Pygame's event queue via `KeyboardEvent`. This code runs only in the browser build — the desktop app is unaffected.
 ---
 
 ## Tech Stack
