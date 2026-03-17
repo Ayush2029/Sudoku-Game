@@ -2,6 +2,7 @@ import asyncio
 import pygame
 import random
 import copy
+import platform
 
 WIN_W, WIN_H = 540, 660
 GRID_PX      = 486
@@ -311,4 +312,40 @@ async def main():
     pygame.quit()
 
 if __name__ == "__main__":
+    if platform.system() == "Emscripten":
+        from js import document, window
+        js_code = """
+        var inp = document.createElement('input');
+        inp.type = 'text';
+        inp.inputMode = 'numeric';
+        inp.pattern = '[0-9]*';
+        inp.style.cssText = 'position:fixed;opacity:0;width:1px;height:1px;top:0;left:0;border:none;outline:none;';
+        inp.id = 'sudoku-input';
+        document.body.appendChild(inp);
+        document.addEventListener('click', function() {
+            document.getElementById('sudoku-input').focus();
+        });
+        document.addEventListener('touchend', function() {
+            document.getElementById('sudoku-input').focus();
+        });
+        document.getElementById('sudoku-input').addEventListener('input', function(e) {
+            var val = this.value.replace(/[^1-9]/g, '');
+            if (val.length > 0) {
+                var digit = val[val.length - 1];
+                var event = new KeyboardEvent('keydown', {
+                    key: digit,
+                    keyCode: 48 + parseInt(digit),
+                    which: 48 + parseInt(digit),
+                    bubbles: true
+                });
+                window.dispatchEvent(event);
+            }
+            this.value = '';
+        });
+        setTimeout(function() {
+            document.getElementById('sudoku-input').focus();
+        }, 1000);
+        """
+        window.eval(js_code)
+
     asyncio.run(main())
