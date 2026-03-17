@@ -76,7 +76,7 @@ python sudoku/main.py
 | pygame | 2.5.2 | Game rendering and input |
 | pygbag | 0.9.3 | Build tool for browser/WebAssembly export |
 
-`asyncio`, `random`, and `copy` are Python standard library modules — no installation needed.
+`asyncio`, `random`, `copy`, and `platform` are Python standard library modules — no installation needed.
 
 ---
 
