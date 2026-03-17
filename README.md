@@ -30,7 +30,7 @@ A classic Sudoku puzzle game built with Python and Pygame, playable both as a de
 
 | Input | Action |
 |---|---|
-| Click a cell | Select it |
+| Click / Tap a cell | Select it |
 | `1` – `9` | Enter number in selected cell |
 | `Backspace` / `Delete` | Erase selected cell |
 | `H` | Hint |
